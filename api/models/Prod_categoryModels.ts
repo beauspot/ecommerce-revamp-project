@@ -1,5 +1,6 @@
-import { ProductCategoryInterface } from "../interfaces/prod_category_interface";
 import mongoose, { Schema } from "mongoose";
+
+import { ProductCategoryInterface } from "@/interfaces/prod_category_interface";
 
 const productCategorySchema: Schema<ProductCategoryInterface> = new Schema(
   {

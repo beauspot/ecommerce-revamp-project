@@ -1,7 +1,10 @@
-import { Request, Response } from "express";
-import asyncHandler from "express-async-handler";
-import { StatusCodes } from "http-status-codes";
 import slugify from "slugify";
+import * as dotenv from "dotenv";
+import { createClient } from "redis";
+import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import asyncHandler from "express-async-handler";
+import { UploadedFile } from "express-fileupload";
 
 import {
   createProductService,
@@ -11,20 +14,17 @@ import {
   deleteProductService,
   rateProductService,
   uploadImageService,
-} from "../services/product.service";
+} from "@/services/product.service";
 import {
   GetAllProductsOptions,
   GetAllProductsQueryParams,
-} from "../interfaces/product_Interface";
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { validateMongoDbID } from "../helpers/validateDbId";
-import { UploadedFile } from "express-fileupload";
-import { createClient } from "redis";
-import * as dotenv from "dotenv";
+} from "@/interfaces/product_Interface";
+import { runRedisOperation } from "@/configs/redis.config";
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
+import { validateMongoDbID } from "@/utils/validateDbId";
 
 dotenv.config();
 
-import { runRedisOperation } from "../config/redis.config";
 
 const redis = runRedisOperation();
 // create a new product controller

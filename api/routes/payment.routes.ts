@@ -1,6 +1,7 @@
 import express from "express";
-import { PaymentController } from "../controllers/paymentCtrls";
-import { auth } from "../middlewares/authMiddleware";
+
+import { PaymentController } from "@/controllers/paymentCtrls";
+import { auth } from "@/middlewares/authMiddleware";
 
 // const paymentCtrl = new PaymentController();
 

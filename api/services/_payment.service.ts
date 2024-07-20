@@ -1,5 +1,5 @@
-import { UserOrderModel } from "../models/orderModel";
 import axios from "axios";
+import { UserOrderModel } from "@/models/orderModel";
 
 export class PaymentService {
   public static async verify(reference: string) {

@@ -1,6 +1,6 @@
-import { ColorDataModel } from "../models/colorModel";
-import { validateMongoDbID } from "../helpers/validateDbId";
-import { IColor } from "../interfaces/colorInterface";
+import { ColorDataModel } from "@/models/colorModel";
+import { IColor } from "@/interfaces/colorInterface";
+import { validateMongoDbID } from "@/helpers/utils/validateDbId";
 
 export class ProductColorService {
   public static async createColor(colorData: IColor): Promise<IColor> {

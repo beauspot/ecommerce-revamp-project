@@ -25,8 +25,8 @@ import {
   getAllOrdersController,
   getOrderByUserIDController,
   UpdateOrderStatusController,
-} from "../controllers/userCtrls";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
+} from "@/controllers/userCtrls";
+import { auth, isAdmin } from "@/helpers/middlewares/authMiddleware";
 
 const authRoute = express.Router();
 

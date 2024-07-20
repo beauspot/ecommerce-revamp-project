@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { OrderInterface } from "../interfaces/order_interface";
+
+import { OrderInterface } from "@/interfaces/order_interface";
 
 const orderSchema = new Schema<OrderInterface>(
   {
@@ -60,3 +61,4 @@ export const UserOrderModel = mongoose.model<OrderInterface>(
   "OrderModel",
   orderSchema
 );
+

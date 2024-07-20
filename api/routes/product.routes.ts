@@ -1,5 +1,6 @@
 import express from "express";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
+
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 import {
   create_product,
   updateSingleProduct,
@@ -8,9 +9,9 @@ import {
   getASingleProduct,
   rateProduct,
   uploadImageCtrl,
-} from "../controllers/productCtrls";
+} from "@/controllers/productCtrls";
 
-import { uploadPhoto, productImageResize } from "../middlewares/uploadImages";
+import { uploadPhoto, productImageResize } from "@/middlewares/uploadImages";
 
 const productRoute = express.Router();
 

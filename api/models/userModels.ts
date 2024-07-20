@@ -2,8 +2,9 @@ import { Schema, model } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import { consoleLogger } from "../utils/logger";
-import { UserDataInterface } from "../interfaces/user_interface";
+
+import  logger  from "@/helpers/utils/logger";
+import { UserDataInterface } from "@/interfaces/user_interface";
 
 // Declare the Schema of the Mongo model
 const userSchema = new Schema<UserDataInterface>(
@@ -97,7 +98,7 @@ userSchema.methods.createJWT = function () {
 
 userSchema.methods.comparePwd = async function (pwd: string) {
   const comparePwd = await bcrypt.compare(pwd, this.password);
-  consoleLogger.info(comparePwd);
+  logger.info(comparePwd);
   return comparePwd;
 };
 

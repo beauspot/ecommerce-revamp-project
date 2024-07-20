@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { CartModelInterface } from "../interfaces/cartModel_Interface";
+
+import { CartModelInterface } from "@/interfaces/cartModel_Interface";
 
 const cartSchema = new Schema<CartModelInterface>(
   {

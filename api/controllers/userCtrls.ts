@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
-import { generateRefreshToken } from "../helpers/refreshToken";
+import { generateRefreshToken } from "@/utils/refreshToken";
 import {
   create_user_service,
   login_user_service,
@@ -28,11 +28,11 @@ import {
   getAllOrdersService,
   getOrderByUserIdService,
   updateOrderStatus_service,
-} from "../services/user.service";
+} from "@/services/user.service";
 
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import CustomAPIError from "../helpers/custom-errors";
-import { validateUser, userWithID } from "../config/validation";
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
+import CustomAPIError from "@/utils/custom-errors";
+import { validateUser, userWithID } from "@/configs/validation";
 
 // User Signup controller
 export const create_a_user = asyncHandler(

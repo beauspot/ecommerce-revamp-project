@@ -1,7 +1,8 @@
-import { ProductColorService } from "../services/color.service";
 import { Request, Response } from "express";
-import { IColor } from "../interfaces/colorInterface";
 import { StatusCodes } from "http-status-codes";
+
+import { ProductColorService } from "@/services/color.service";
+import { IColor } from "@/interfaces/colorInterface";
 
 export class ProductColorController {
   public static async createColor(req: Request, res: Response): Promise<void> {

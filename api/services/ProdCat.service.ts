@@ -1,8 +1,9 @@
-import ProductCategoryModel from "../models/Prod_categoryModels";
-import CustomAPIError from "../helpers/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../helpers/validateDbId";
-import { ProductCategoryInterface } from "../interfaces/prod_category_interface";
+
+import CustomAPIError from "@/utils/custom-errors";
+import ProductCategoryModel from "@/models/Prod_categoryModels";
+import { validateMongoDbID } from "@/helpers/utils/validateDbId";
+import { ProductCategoryInterface } from "@/interfaces/prod_category_interface";
 
 export const createCategoryService = async (
   category: ProductCategoryInterface

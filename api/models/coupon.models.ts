@@ -1,5 +1,6 @@
-import { CouponInterface } from "../interfaces/coupon_interface";
 import { Schema, Model, model } from "mongoose";
+
+import { CouponInterface } from "@/interfaces/coupon_interface";
 
 const couponSchema = new Schema<CouponInterface>({
   name: {

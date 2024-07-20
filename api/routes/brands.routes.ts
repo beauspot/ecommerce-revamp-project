@@ -1,12 +1,13 @@
 import express from "express";
+
 import {
 createNewBrand,
 getAllBrands,
 getSingleBrand,
 updateSingleBrand,
  delete_brand,
-} from "../controllers/brand.controllers";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
+} from "@/controllers/brand.controllers";
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 const router = express.Router();
 
 router

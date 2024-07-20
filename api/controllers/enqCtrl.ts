@@ -1,8 +1,9 @@
-import { EnquiryService } from "../services/enq.service";
 import { Request, Response } from "express";
-import { IEnquiry } from "../interfaces/enquiryInterface";
+import { EnquiryService } from "../services/enq.service";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
+
+import { IEnquiry } from "@/interfaces/enquiryInterface";
 
 export class EnquiryController {
   public static createEnq = asyncHandler(

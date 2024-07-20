@@ -1,6 +1,7 @@
 import express from "express";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
-import { uploadPhoto, blogImageResize } from "../middlewares/uploadImages";
+
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
+import { uploadPhoto, blogImageResize } from "@/middlewares/uploadImages";
 import {
   create_new_blog,
   update_blog,

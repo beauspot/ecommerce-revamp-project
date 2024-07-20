@@ -1,8 +1,9 @@
-import { BrandModel } from "../models/brands.models";
-import CustomAPIError from "../helpers/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../helpers/validateDbId";
-import { BrandInterface } from "../interfaces/brand.interface";
+
+import { BrandModel } from "@/models/brands.models";
+import CustomAPIError from "@/utils/custom-errors";
+import { validateMongoDbID } from "@/utils/validateDbId";
+import { BrandInterface } from "@/interfaces/brand.interface";
 
 export const createBrandService = async (category: BrandInterface) => {
   const newBrand = await BrandModel.create({ ...category });

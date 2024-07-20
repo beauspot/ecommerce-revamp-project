@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
-import { IEnquiry } from "../interfaces/enquiryInterface";
+
+import { IEnquiry } from "@/interfaces/enquiryInterface";
 
 const enquirySchema = new Schema<IEnquiry>(
   {

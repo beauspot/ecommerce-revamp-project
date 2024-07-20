@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { Document } from "mongoose";
-import { CartModelInterface } from "./cartModel_Interface";
-import { UserDataInterface } from "./user_interface";
+import { CartModelInterface } from "@/interfaces/cartModel_Interface";
+import { UserDataInterface } from "@/interfaces/user_interface";
 
 // Define the structure of your form data
 interface Form {

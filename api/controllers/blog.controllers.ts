@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
+import { UploadedFile } from "express-fileupload";
 // import slugify from "slugify";
+
 import {
   createBlog,
   updateBlog,
@@ -11,11 +13,11 @@ import {
   likeBlogService,
   dislikeBlogService,
   uploadBlogImageService,
-} from "../services/blog.service";
-import CustomAPIError from "../helpers/custom-errors";
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { validateMongoDbID } from "../helpers/validateDbId";
-import { UploadedFile } from "express-fileupload";
+} from "@/services/blog.service";
+
+import CustomAPIError from "@/utils/custom-errors";
+import { validateMongoDbID } from "@/utils/validateDbId";
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
 
 export const create_new_blog = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {

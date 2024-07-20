@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
-import { CartModelInterface } from "./cartModel_Interface";
-import { UserDataInterface } from "./user_interface";
+import { CartModelInterface } from "@/interfaces/cartModel_Interface";
+import { UserDataInterface } from "@/interfaces/user_interface";
 
 export interface checkOutInterface extends Document {
   firstName: UserDataInterface["firstName"];

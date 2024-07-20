@@ -1,7 +1,10 @@
-import { checkoutModel } from "../models/checkout_model";
-import { PaymentData } from "../interfaces/paystack_init.interface";
-import { InitializePaymentInput } from "../types/payment_init";
-import { initializePayment, verifyPayment } from "../utils/paystack.utils";
+import { checkoutModel } from "@/models/checkout_model";
+import { PaymentData } from "@/interfaces/paystack_init.interface";
+import { InitializePaymentInput } from "@/helpers/types/payment_init";
+import {
+  initializePayment,
+  verifyPayment,
+} from "@/helpers/utils/paystack.utils";
 
 export class PaymentService {
   async startPayment(data: PaymentData) {
@@ -15,7 +18,6 @@ export class PaymentService {
         metadata: {
           full_name: data.firstName + " " + data.lastName,
         },
-      
       };
 
       return await initializePayment(paymentData);
