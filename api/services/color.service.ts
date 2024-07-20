@@ -1,5 +1,5 @@
 import { ColorDataModel } from "../models/colorModel";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { IColor } from "../interfaces/colorInterface";
 
 export class ProductColorService {

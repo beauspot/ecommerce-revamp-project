@@ -1,7 +1,7 @@
 import { productModel } from "../models/productsModels";
 import { authModel } from "../models/userModels";
 import { StatusCodes } from "http-status-codes";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import {
   ProductDataInterface,
   GetAllProductsOptions,

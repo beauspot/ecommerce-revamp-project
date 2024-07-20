@@ -17,7 +17,7 @@ import {
   GetAllProductsQueryParams,
 } from "../interfaces/product_Interface";
 import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { UploadedFile } from "express-fileupload";
 import { createClient } from "redis";
 import * as dotenv from "dotenv";

@@ -12,9 +12,9 @@ import {
   dislikeBlogService,
   uploadBlogImageService,
 } from "../services/blog.service";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { UploadedFile } from "express-fileupload";
 
 export const create_new_blog = asyncHandler(

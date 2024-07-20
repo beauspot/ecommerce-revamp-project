@@ -1,7 +1,7 @@
 import BlogCategoryModel from "../models/Blog_categoryModels";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { BlogCategoryInterface } from "../interfaces/blog_category_interface ";
 
 export const createCategoryService = async (

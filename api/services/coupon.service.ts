@@ -1,7 +1,7 @@
 import { CouponModel } from "../models/coupon.models";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { CouponInterface } from "../interfaces/coupon_interface";
 
 export const createCouponService = async (coupon: CouponInterface) => {
@@ -24,7 +24,7 @@ export const getAllCoupons_service = async (): Promise<CouponInterface[]> => {
 
 export const getSingleCouponService = async (couponID: string) => {
   const couponExists = await CouponModel.findById(couponID);
-    validateMongoDbID(couponID);
+  validateMongoDbID(couponID);
   if (!couponExists) {
     throw new CustomAPIError(
       `Cannot find coupon the the ID: ${couponID}`,

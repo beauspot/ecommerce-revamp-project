@@ -1,9 +1,9 @@
 import { BlogModel } from "../models/blogModel";
 // import { authModel } from "../models/userModels";
 import { blogInterface } from "../interfaces/blog.interface";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { cloudinaryUpload } from "../config/cloudinaryconfig";
 import { UploadedFile } from "express-fileupload";
 import { FileWithNewPath } from "../interfaces/filePath";

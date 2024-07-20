@@ -1,4 +1,4 @@
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { UserOrderModel } from "../models/orderModel";
 import { productModel } from "../models/productsModels";
 import {

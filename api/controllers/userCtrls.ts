@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 import { StatusCodes } from "http-status-codes";
-import { generateRefreshToken } from "../helpers/refreshToken";
+import { generateRefreshToken } from "../utils/refreshToken";
 import {
   create_user_service,
   login_user_service,
@@ -31,7 +31,7 @@ import {
 } from "../services/user.service";
 
 import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import CustomAPIError from "../helpers/custom-errors";
+import CustomAPIError from "../utils/custom-errors";
 import { validateUser, userWithID } from "../config/validation";
 
 // User Signup controller

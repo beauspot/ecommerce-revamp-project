@@ -1,5 +1,5 @@
 import { EnquiryDataModel } from "../models/enqModel";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { IEnquiry } from "../interfaces/enquiryInterface";
 
 export class EnquiryService {

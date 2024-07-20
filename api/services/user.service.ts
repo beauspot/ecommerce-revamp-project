@@ -4,12 +4,12 @@ import { productModel } from "../models/productsModels";
 import { CouponModel } from "../models/coupon.models";
 import { UserCartModel } from "../models/cartModel";
 import { mailer } from "../config/nodeMailer";
-import CustomAPIError from "../helpers/custom-errors";
-import UnauthenticatedError from "../helpers/unauthenticated";
-import { validateMongoDbID } from "../helpers/validateDbId";
+import CustomAPIError from "../utils/custom-errors";
+import UnauthenticatedError from "../utils/unauthenticated";
+import { validateMongoDbID } from "../utils/validateDbId";
 import { StatusCodes } from "http-status-codes";
-import { generateToken } from "../helpers/jsonWebToken";
-import { generateRefreshToken } from "../helpers/refreshToken";
+import { generateToken } from "../utils/jsonWebToken";
+import { generateRefreshToken } from "../utils/refreshToken";
 import { UserDataInterface } from "../interfaces/user_interface";
 import {
   OrderInterface,

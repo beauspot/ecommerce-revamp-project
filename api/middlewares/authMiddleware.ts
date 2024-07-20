@@ -3,7 +3,7 @@ import { authModel } from "../models/userModels";
 import { StatusCodes } from "http-status-codes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import UnauthenticatedError from "../helpers/unauthenticated";
+import UnauthenticatedError from "../utils/unauthenticated";
 import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
 import lodash from "lodash";
 
