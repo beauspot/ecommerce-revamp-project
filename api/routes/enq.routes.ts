@@ -1,6 +1,7 @@
-import { EnquiryController } from "../controllers/enqCtrl";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
 import express from "express";
+
+import { EnquiryController } from "@/controllers/enqCtrl";
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 
 const enqRoute = express.Router();
 

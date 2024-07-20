@@ -1,10 +1,10 @@
-import { validateMongoDbID } from "../utils/validateDbId";
-import { UserOrderModel } from "../models/orderModel";
-import { productModel } from "../models/productsModels";
+import { UserOrderModel } from "@/models/orderModel";
+import { productModel } from "@/models/productsModels";
 import {
   CreateOrderParams,
   OrderInterface,
-} from "../interfaces/order_interface";
+} from "@/interfaces/order_interface";
+import { validateMongoDbID } from "@/helpers/utils/validateDbId";
 
 export class OrderService {
   public static async create(data: CreateOrderParams): Promise<any> {

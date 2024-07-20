@@ -1,6 +1,7 @@
 // external dependencies
 import "reflect-metadata";
 import "express-async-errors";
+import ip from "ip";
 import express, { Application, Response } from "express";
 import morgan from "morgan";
 import cors from "cors";
@@ -28,11 +29,11 @@ const limiter = rateLimit({
 });
 
 // module dependencies
-import notFoundMiddleware from "../src/api/middlewares/notFound";
-import errorHandlerMiddleware from "../src/api/middlewares/errHandler";
-import connectDb from "../src/api/config/dbconfig";
-import { runRedisOperation } from "./api/config/redis.config";
-import log from "./api/utils/logger";
+import notFoundMiddleware from "./api/helpers/middlewares/notFound";
+import errorHandlerMiddleware from "./api/helpers/middlewares/errHandler";
+import connectDb from "./api/helpers/configs/dbconfig";
+import { runRedisOperation } from "./api/helpers/configs/redis.config";
+import log from "./api/helpers/utils/logger";
 
 // Routes Imports
 import authRoute from "./api/routes/auth.routes";

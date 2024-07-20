@@ -1,6 +1,6 @@
-import { ProductColorController } from "../controllers/colorCtrl";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
 import express from "express";
+import { ProductColorController } from "@/controllers/colorCtrl";
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 
 const colorRoute = express.Router();
 

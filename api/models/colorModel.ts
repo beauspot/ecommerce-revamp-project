@@ -1,5 +1,6 @@
-import { IColor } from "../interfaces/colorInterface";
 import mongoose, { Schema } from "mongoose";
+
+import { IColor } from "@/interfaces/colorInterface";
 
 const colorSchema = new Schema<IColor>(
   {

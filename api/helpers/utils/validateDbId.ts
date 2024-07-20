@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
-import CustomAPIError from "./custom-errors";
 import { StatusCodes } from "http-status-codes";
+
+import CustomAPIError from "@/utils/custom-errors";
 
 export const validateMongoDbID = (id: string) => {
   const isValid = mongoose.Types.ObjectId.isValid(id);

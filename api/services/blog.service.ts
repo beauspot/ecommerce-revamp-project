@@ -1,13 +1,14 @@
-import { BlogModel } from "../models/blogModel";
-// import { authModel } from "../models/userModels";
-import { blogInterface } from "../interfaces/blog.interface";
-import CustomAPIError from "../utils/custom-errors";
-import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../utils/validateDbId";
-import { cloudinaryUpload } from "../config/cloudinaryconfig";
-import { UploadedFile } from "express-fileupload";
-import { FileWithNewPath } from "../interfaces/filePath";
 import fs from "fs";
+import { StatusCodes } from "http-status-codes";
+import { UploadedFile } from "express-fileupload";
+
+// import { authModel } from "../models/userModels";
+import { BlogModel } from "@/models/blogModel";
+import { blogInterface } from "@/interfaces/blog.interface";
+import CustomAPIError from "@/utils/custom-errors";
+import { validateMongoDbID } from "@/utils/validateDbId";
+import { cloudinaryUpload } from "@/configs/cloudinaryconfig";
+import { FileWithNewPath } from "@/interfaces/filePath";
 
 export const createBlog = async (blogPost: blogInterface) => {
   const newBlog = await BlogModel.create({ ...blogPost });

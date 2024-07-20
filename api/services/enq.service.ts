@@ -1,6 +1,6 @@
-import { EnquiryDataModel } from "../models/enqModel";
-import { validateMongoDbID } from "../utils/validateDbId";
-import { IEnquiry } from "../interfaces/enquiryInterface";
+import { EnquiryDataModel } from "@/models/enqModel";
+import { validateMongoDbID } from "@/helpers/utils/validateDbId";
+import { IEnquiry } from "@/interfaces/enquiryInterface";
 
 export class EnquiryService {
   public static async createEnquiry(enqData: IEnquiry): Promise<IEnquiry> {

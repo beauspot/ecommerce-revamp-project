@@ -1,8 +1,9 @@
-import { CouponModel } from "../models/coupon.models";
-import CustomAPIError from "../utils/custom-errors";
 import { StatusCodes } from "http-status-codes";
-import { validateMongoDbID } from "../utils/validateDbId";
-import { CouponInterface } from "../interfaces/coupon_interface";
+
+import { CouponModel } from "@/models/coupon.models";
+import CustomAPIError from "@/utils/custom-errors";
+import { validateMongoDbID } from "@/utils/validateDbId";
+import { CouponInterface } from "@/interfaces/coupon_interface";
 
 export const createCouponService = async (coupon: CouponInterface) => {
   const newCoupon = await CouponModel.create({ ...coupon });

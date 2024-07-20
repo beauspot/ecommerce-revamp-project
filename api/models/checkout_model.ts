@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
-import { checkOutInterface } from "../interfaces/checkout_interface";
+
+import { checkOutInterface } from "@/interfaces/checkout_interface";
 
 const checkoutSchema = new Schema<checkOutInterface>({
   firstName: String,

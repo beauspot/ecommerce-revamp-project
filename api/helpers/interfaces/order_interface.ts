@@ -1,5 +1,5 @@
 import { Document, Types } from "mongoose";
-import { ProductDataInterface } from "../interfaces/product_Interface";
+import { ProductDataInterface } from "@/interfaces/product_Interface";
 
 export interface OrderInterface extends Document {
   products: {

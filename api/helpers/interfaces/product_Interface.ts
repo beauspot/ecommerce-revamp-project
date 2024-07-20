@@ -1,5 +1,5 @@
 import { Document, Types } from "mongoose";
-import { SortByOptions } from "../types/sortOptions";
+import { SortByOptions } from "@/helpers/types/sortOptions";
 
 // Defining the interface for the rating object
 interface Rating {

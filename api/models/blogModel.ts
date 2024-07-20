@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
-import { blogInterface } from "../interfaces/blog.interface";
+
+import { blogInterface } from "@/interfaces/blog.interface";
 import mongoose from "mongoose";
 
 const blogSchema = new Schema<blogInterface>(

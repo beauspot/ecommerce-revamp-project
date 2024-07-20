@@ -1,14 +1,15 @@
-import asyncHandler from "express-async-handler";
-import CustomAPIError from "../utils/custom-errors";
-import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
+import { StatusCodes } from "http-status-codes";
+import asyncHandler from "express-async-handler";
+
+import CustomAPIError from "@/utils/custom-errors";
 import {
   createCategoryService,
   updateCategoryService,
   deleteCategoryService,
   getCategoryService,
   getAllCategoryService,
-} from "../services/ProdCat.service";
+} from "@/services/ProdCat.service";
 
 export const createNewCategory = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {

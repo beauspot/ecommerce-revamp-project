@@ -1,5 +1,5 @@
 import { Document, Types } from "mongoose";
-import { ProductDataInterface } from "../interfaces/product_Interface";
+import { ProductDataInterface } from "@/interfaces/product_Interface";
 
 export interface CartModelInterface extends Document {
   products: ProductDataInterface["id"];

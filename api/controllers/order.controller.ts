@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { OrderService } from "../services/order.service";
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
+import { OrderService } from "@/services/order.service";
 
 export default class OrderController {
   public static async createOrder(req: AuthenticatedRequest, res: Response) {

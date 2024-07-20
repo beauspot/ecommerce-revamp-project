@@ -1,12 +1,13 @@
 import express from "express";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
+
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 import {
   createCoupon,
   getAllCoupon,
   getSingleCoupon,
   updateCoupon,
   deleteCoupon,
-} from "../controllers/coupon.controllers";
+} from "@/controllers/coupon.controllers";
 
 const router = express.Router();
 

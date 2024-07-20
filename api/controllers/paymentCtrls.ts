@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PaymentService } from "../services/payment.service";
+import { PaymentService } from "@/services/payment.service";
 // import Paystack from "paystack-api";
 // const paystack = Paystack(process.env.PAYSTACK_SECRET);
 

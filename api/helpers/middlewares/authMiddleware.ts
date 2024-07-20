@@ -1,11 +1,12 @@
 import { Response, NextFunction } from "express";
-import { authModel } from "../models/userModels";
 import { StatusCodes } from "http-status-codes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import UnauthenticatedError from "../utils/unauthenticated";
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
 import lodash from "lodash";
+
+import UnauthenticatedError from "@/utils/unauthenticated";
+import { authModel } from "@/models/userModels";
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
 
 // Define a type guard function for JwtPayload
 function isJwtPayload(decoded: any): decoded is JwtPayload {

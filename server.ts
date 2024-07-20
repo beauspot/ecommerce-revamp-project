@@ -1,5 +1,5 @@
 import { EcomApp } from "./app";
-import logger from "./api/utils/logger";
+import logger from "./api/helpers/utils/logger";
 
 (() => {
   try {

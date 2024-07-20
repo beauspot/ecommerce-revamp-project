@@ -1,12 +1,13 @@
 import express from "express";
+
 import {
   createNewCategory,
   getAllCategory,
   getSingleCategory,
   updateSingleCategory,
   delete_category,
-} from "../controllers/blog_category.controllers";
-import { auth, isAdmin } from "../middlewares/authMiddleware";
+} from "@/controllers/blog_category.controllers";
+import { auth, isAdmin } from "@/middlewares/authMiddleware";
 const router = express.Router();
 
 router

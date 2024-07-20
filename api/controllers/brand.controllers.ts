@@ -1,14 +1,15 @@
 import asyncHandler from "express-async-handler";
-import CustomAPIError from "../utils/custom-errors";
 import { StatusCodes } from "http-status-codes";
 import { Request, Response } from "express";
+
+import CustomAPIError from "@/utils/custom-errors";
 import {
   createBrandService,
   updateBrandService,
   deleteBrandService,
   getBrandService,
   getAllBrandService,
-} from "../services/brand.service";
+} from "@/services/brand.service";
 
 export const createNewBrand = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {

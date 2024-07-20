@@ -1,8 +1,9 @@
-import { Request, Response } from "express";
-import { AuthenticatedRequest } from "../interfaces/authenticateRequest";
-import { verifyPayment } from "../utils/paystack.utils";
 import { createHmac } from "crypto";
-import { PaymentService } from "../services/_payment.service";
+import { Request, Response } from "express";
+
+import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
+import { verifyPayment } from "@/utils/paystack.utils";
+import { PaymentService } from "@/services/_payment.service";
 
 export default class PaymentController {
   public static async initializeOrder(

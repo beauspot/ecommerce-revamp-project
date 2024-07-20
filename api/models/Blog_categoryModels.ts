@@ -1,4 +1,4 @@
-import { BlogCategoryInterface } from "../interfaces/blog_category_interface ";
+import { BlogCategoryInterface } from "@/interfaces/blog_category_interface ";
 import mongoose, { Schema } from "mongoose";
 
 const blogCategorySchema: Schema<BlogCategoryInterface> = new Schema(

@@ -1,16 +1,17 @@
-import { productModel } from "../models/productsModels";
-import { authModel } from "../models/userModels";
+import fs from "fs";
 import { StatusCodes } from "http-status-codes";
-import CustomAPIError from "../utils/custom-errors";
+import { UploadedFile } from "express-fileupload";
+
+import { productModel } from "@/models/productsModels";
+import { authModel } from "@/models/userModels";
+import CustomAPIError from "@/helpers/utils/custom-errors";
 import {
   ProductDataInterface,
   GetAllProductsOptions,
-} from "../interfaces/product_Interface"; // Import ProductDataInterface
-import { cloudinaryUpload } from "../config/cloudinaryconfig";
-import { UploadedFile } from "express-fileupload";
-import { FileWithNewPath } from "../interfaces/filePath";
-import { Paginated } from "../interfaces/paginatedInterface";
-import fs from "fs";
+} from "@/interfaces/product_Interface"; // Import ProductDataInterface
+import { cloudinaryUpload } from "@/configs/cloudinaryconfig";
+import { FileWithNewPath } from "@/interfaces/filePath";
+import { Paginated } from "@/interfaces/paginatedInterface";
 
 //Create a Product Service
 export const createProductService = async (product: ProductDataInterface) => {

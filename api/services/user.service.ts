@@ -1,30 +1,31 @@
-import { authModel } from "../models/userModels";
-import { UserOrderModel } from "../models/orderModel";
-import { productModel } from "../models/productsModels";
-import { CouponModel } from "../models/coupon.models";
-import { UserCartModel } from "../models/cartModel";
-import { mailer } from "../config/nodeMailer";
-import CustomAPIError from "../utils/custom-errors";
-import UnauthenticatedError from "../utils/unauthenticated";
-import { validateMongoDbID } from "../utils/validateDbId";
+import uniqid from "uniqid";
+import dotenv from "dotenv";
+import crypto from "crypto";
+import jwt from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
-import { generateToken } from "../utils/jsonWebToken";
-import { generateRefreshToken } from "../utils/refreshToken";
-import { UserDataInterface } from "../interfaces/user_interface";
+
+
+import { authModel } from "@/models/userModels";
+import { UserOrderModel } from "@/models/orderModel";
+import { productModel } from "@/models/productsModels";
+import { CouponModel } from "@/models/coupon.models";
+import { UserCartModel } from "@/models/cartModel";
+import { mailer } from "@/configs/nodeMailer";
+import CustomAPIError from "@/utils/custom-errors";
+import UnauthenticatedError from "@/utils/unauthenticated";
+import { validateMongoDbID } from "@/utils/validateDbId";
+import { generateToken } from "@/utils/jsonWebToken";
+import { generateRefreshToken } from "@/utils/refreshToken";
+import { UserDataInterface } from "@/interfaces/user_interface";
 import {
   OrderInterface,
   UpdateOrderStatusParams,
-} from "../interfaces/order_interface";
-import jwt from "jsonwebtoken";
-import { blacklistTokens } from "../models/blacklistTokens";
-import crypto from "crypto";
-import { IDecoded } from "../interfaces/authenticateRequest";
-import { CartItem } from "../interfaces/cartModel_Interface";
-import { CartModelInterface } from "../interfaces/cartModel_Interface";
-import { CreateOrderParams } from "../interfaces/create_order";
-import uniqid from "uniqid";
-
-import dotenv from "dotenv";
+} from "@/interfaces/order_interface";
+import { blacklistTokens } from "@/models/blacklistTokens";
+import { IDecoded } from "@/interfaces/authenticateRequest";
+import { CartItem } from "@/interfaces/cartModel_Interface";
+import { CartModelInterface } from "@/interfaces/cartModel_Interface";
+import { CreateOrderParams } from "@/interfaces/create_order";
 
 dotenv.config();
 
