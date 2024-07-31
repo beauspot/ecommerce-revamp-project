@@ -29,24 +29,24 @@ const limiter = rateLimit({
 });
 
 // module dependencies
-import notFoundMiddleware from "./api/helpers/middlewares/notFound";
-import errorHandlerMiddleware from "./api/helpers/middlewares/errHandler";
-import connectDb from "./api/helpers/configs/dbconfig";
-import { runRedisOperation } from "./api/helpers/configs/redis.config";
-import log from "./api/helpers/utils/logger";
+import notFoundMiddleware from "@/middlewares/notFound";
+import errorHandlerMiddleware from "@/middlewares/errHandler";
+import connectDb from "@/configs/dbconfig";
+import { redisClient } from "@/configs/redis.config";
+import log from "@/utils/logger";
 
 // Routes Imports
-import authRoute from "./api/routes/auth.routes";
-import colorRoute from "./api/routes/color.routes";
-import productRoute from "./api/routes/product.routes";
-import enquiryRoute from "./api/routes/enq.routes";
-import blogRoute from "./api/routes/blog.routes";
-import blogCategoryRoute from "./api/routes/blogCategory.routes";
-import productCategoryRoute from "./api/routes/productCategory.routes";
-import brandRoute from "./api/routes/brands.routes";
-import couponRoute from "./api/routes/coupon.routes";
-import paymentRoute from "./api/routes/payment.routes";
-import orderRoute from "./api/routes/order.routes";
+import { authRoutes } from "@/routes/auth.routes";
+import colorRoute from "@/routes/color.routes";
+import productRoute from "@/routes/product.routes";
+import enquiryRoute from "@/routes/enq.routes";
+import blogRoute from "@/routes/blog.routes";
+import blogCategoryRoute from "@/routes/blogCategory.routes";
+import productCategoryRoute from "@/routes/productCategory.routes";
+import brandRoute from "@/routes/brands.routes";
+import couponRoute from "@/routes/coupon.routes";
+import paymentRoute from "@/routes/payment.routes";
+import orderRoute from "@/routes/order.routes";
 
 dotenv.config();
 
@@ -100,7 +100,7 @@ export class EcomApp {
   }
 
   private routes(): void {
-    this.app.use("/api/v1/mall/user", authRoute);
+    this.app.use("/api/v1/mall/user", authRoutes());
     this.app.use("/api/v1/mall/products", productRoute);
     this.app.use("/api/v1/mall/blogs", blogRoute);
     this.app.use("/api/v1/mall/brand", brandRoute);
@@ -124,7 +124,7 @@ export class EcomApp {
 
   async listen(): Promise<void> {
     try {
-      await runRedisOperation();
+      await redisClient;
       await connectDb(process.env.MONGO_URL!);
       this.app.listen(this.Port, () =>
         log.info(`Server Listening on Port ${this.Port}`)
