@@ -6,7 +6,6 @@ export interface UserDataInterface extends Document {
   email: string;
   mobileNumber: string;
   password: string;
-  confirmPassword: string;
   role: string;
   isBlocked: boolean;
   cart: Types.ObjectId[];
