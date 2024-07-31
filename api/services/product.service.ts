@@ -56,7 +56,7 @@ export const getAllProductsService = async (
   if (allProducts.length <= 0) {
     throw new CustomAPIError("No products found", StatusCodes.NO_CONTENT);
   }
-  const productsCount: number = await productModel.find(query).count();
+  const productsCount: number = await productModel.find(query).countDocuments();
 
   return {
     page: allProducts,
@@ -65,6 +65,7 @@ export const getAllProductsService = async (
     total: productsCount,
   };
 };
+
 // Get a single product by its ID Service
 export const getSingleProductService = async (productID: string) => {
   const productExists = await productModel.findById({ _id: productID });
