@@ -212,7 +212,7 @@ export class UserAuthServiceClass {
         runValidators: true,
       }
     );
-    console.log(userId);
+    // console.log(userId);
     if (!updateuser) {
       throw new CustomAPIError(
         `The user with the id: ${id} was not found to be updated`,

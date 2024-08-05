@@ -6,8 +6,14 @@ import { CouponModel } from "@/models/coupon.models";
 import { UserOrderModel } from "@/models/orderModel";
 import { productModel } from "@/models/productsModels";
 
+import { fgtPswdSchema } from "@/schema/fgtpwd.schema";
+import { updatePassword } from "@/schema/updatepwd.schema";
+import { resetPwdInput } from "@/schema/resetpwd.schema";
 import { createUserSchema } from "@/schema/userSchema";
 import { loginUserSchema } from "@/schema/login.schema";
+import { prodWishlistSchema } from "@/schema/wishlist.schema";
+import { createAddressSchema } from "@/schema/address.schema";
+import { restrictUserSchema } from "@/schema/userRestriction.schema";
 
 import { validateResource } from "@/middlewares/validate";
 
@@ -33,6 +39,7 @@ export function authRoutes(): Router {
       (req: Request, res: Response, next: NextFunction) =>
         usercontroller.create_a_user(req, res, next)
     );
+
   router
     .route("/login")
     .post(
@@ -40,21 +47,27 @@ export function authRoutes(): Router {
       (req: Request, res: Response, next: NextFunction) =>
         usercontroller.LoginUser(req, res, next)
     );
+
   router
     .route("/admin-login")
-    .post((req: Request, res: Response, next: NextFunction) =>
-      usercontroller.LoginAdmin(req, res, next)
+    .post(
+      validateResource(loginUserSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.LoginAdmin(req, res, next)
     );
+
   router
     .route("/cart/cash-order")
     .post((req: Request, res: Response, next: NextFunction) =>
       usercontroller.createOrderCtrl(req, res)
     );
+
   router
     .route("/cart")
     .post(auth, (req: Request, res: Response, next: NextFunction) =>
       usercontroller.userCartCtrl(req, res)
     );
+
   router
     .route("/cart/applycoupon")
     .post(auth, (req: Request, res: Response, next: NextFunction) =>
@@ -63,13 +76,20 @@ export function authRoutes(): Router {
 
   router
     .route("/save-address")
-    .put(auth, (req: Request, res: Response, next: NextFunction) =>
-      usercontroller.saveAddress(req, res)
+    .put(
+      validateResource(createAddressSchema),
+      auth,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.saveAddress(req, res)
     );
+
   router
     .route("/wishlist")
-    .put(auth, (req: Request, res: Response, next: NextFunction) =>
-      usercontroller.addToWishList(req, res)
+    .put(
+      validateResource(prodWishlistSchema),
+      auth,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.addToWishList(req, res)
     );
 
   router
@@ -111,13 +131,17 @@ export function authRoutes(): Router {
 
   router
     .route("/forgetpassword")
-    .post((req: Request, res: Response, next: NextFunction) =>
-      usercontroller.forgotPassword(req, res, next)
+    .post(
+      validateResource(fgtPswdSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.forgotPassword(req, res, next)
     );
   router
     .route("/resetpassword/:token")
-    .patch((req: Request, res: Response, next: NextFunction) =>
-      usercontroller.passwordReset(req, res, next)
+    .patch(
+      validateResource(resetPwdInput),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.passwordReset(req, res, next)
     );
 
   router
@@ -152,21 +176,29 @@ export function authRoutes(): Router {
 
   router
     .route("/block-user/:id")
-    .patch(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
-      usercontroller.blockUserCtrl(req, res, next)
+    .patch(
+      validateResource(restrictUserSchema),
+      auth,
+      isAdmin,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.blockUserCtrl(req, res, next)
     );
 
   router
     .route("/unblock-user/:id")
-    .patch(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
-      usercontroller.UnBlockUserCtrl(req, res, next)
+    .patch(
+      validateResource(restrictUserSchema),
+      auth,
+      isAdmin,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.UnBlockUserCtrl(req, res, next)
     );
 
   router
     .route("/order/update-order/:id")
     .put(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
       usercontroller.UpdateOrderStatusController(req, res)
-  );
-  
+    );
+
   return router;
 }
