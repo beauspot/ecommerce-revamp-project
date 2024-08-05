@@ -6,14 +6,14 @@ import { CouponModel } from "@/models/coupon.models";
 import { UserOrderModel } from "@/models/orderModel";
 import { productModel } from "@/models/productsModels";
 
-import { fgtPswdSchema } from "@/schema/fgtpwd.schema";
-import { updatePassword } from "@/schema/updatepwd.schema";
-import { resetPwdInput } from "@/schema/resetpwd.schema";
-import { createUserSchema } from "@/schema/userSchema";
-import { loginUserSchema } from "@/schema/login.schema";
-import { prodWishlistSchema } from "@/schema/wishlist.schema";
-import { createAddressSchema } from "@/schema/address.schema";
-import { restrictUserSchema } from "@/schema/userRestriction.schema";
+import { fgtPswdSchema } from "@/api/helpers/schema/users/fgtpwd.schema";
+import { updatePassword } from "@/api/helpers/schema/users/updatepwd.schema";
+import { resetPwdInput } from "@/api/helpers/schema/users/resetpwd.schema";
+import { createUserSchema } from "@/api/helpers/schema/users/userSchema";
+import { loginUserSchema } from "@/api/helpers/schema/users/login.schema";
+import { prodWishlistSchema } from "@/api/helpers/schema/users/wishlist.schema";
+import { createAddressSchema } from "@/api/helpers/schema/users/address.schema";
+import { restrictUserSchema } from "@/api/helpers/schema/users/userRestriction.schema";
 
 import { validateResource } from "@/middlewares/validate";
 
