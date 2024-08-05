@@ -1,68 +1,204 @@
-import express from "express";
-import {
-  create_a_user,
-  LoginUser,
-  getAllUser,
-  getUser,
-  deleteUser,
-  updateuserCtrl,
-  blockUserCtrl,
-  UnBlockUserCtrl,
-  handleRefreshToken,
-  logoutUserCtrl,
-  forgotPassword,
-  passwordReset,
-  LoginAdmin,
-  addToWishList,
-  getWishList,
-  saveAddress,
-  userCartCtrl,
-  getUserCartController,
-  emptyCartCtrl,
-  applyCouponCtrl,
-  createOrderCtrl,
-  getOrdersController,
-  getAllOrdersController,
-  getOrderByUserIDController,
-  UpdateOrderStatusController,
-} from "@/controllers/userCtrls";
+import { Router, Request, Response, NextFunction } from "express";
+
+import { authModel } from "@/models/userModels";
+import { UserCartModel } from "@/models/cartModel";
+import { CouponModel } from "@/models/coupon.models";
+import { UserOrderModel } from "@/models/orderModel";
+import { productModel } from "@/models/productsModels";
+
+import { fgtPswdSchema } from "@/schema/fgtpwd.schema";
+import { updatePassword } from "@/schema/updatepwd.schema";
+import { resetPwdInput } from "@/schema/resetpwd.schema";
+import { createUserSchema } from "@/schema/userSchema";
+import { loginUserSchema } from "@/schema/login.schema";
+import { prodWishlistSchema } from "@/schema/wishlist.schema";
+import { createAddressSchema } from "@/schema/address.schema";
+import { restrictUserSchema } from "@/schema/userRestriction.schema";
+
+import { validateResource } from "@/middlewares/validate";
+
+import { UserAuthServiceClass } from "@/services/user.service";
+import { UserAuthControllerClass } from "@/controllers/userCtrls";
 import { auth, isAdmin } from "@/helpers/middlewares/authMiddleware";
 
-const authRoute = express.Router();
+export function authRoutes(): Router {
+  const router = Router();
+  let userService = new UserAuthServiceClass(
+    authModel,
+    UserOrderModel,
+    productModel,
+    CouponModel,
+    UserCartModel
+  );
+  let usercontroller = new UserAuthControllerClass(userService);
 
-authRoute.post("/signup", create_a_user);
-authRoute.post("/login", LoginUser);
-authRoute.post("/admin-login", LoginAdmin);
-authRoute.post("/cart/cash-order", auth, createOrderCtrl);
-authRoute.post("/cart", auth, userCartCtrl);
-authRoute.post("/cart/applycoupon", auth, applyCouponCtrl);
+  router
+    .route("/signup")
+    .post(
+      validateResource(createUserSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.create_a_user(req, res, next)
+    );
 
-authRoute.put("/save-address", auth, saveAddress);
-authRoute.put("/wishlist", auth, addToWishList);
+  router
+    .route("/login")
+    .post(
+      validateResource(loginUserSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.LoginUser(req, res, next)
+    );
 
-authRoute.get("/allusers", auth, isAdmin, getAllUser);
-authRoute.get("/refresh-token", handleRefreshToken);
-authRoute.get("/logout", logoutUserCtrl);
-authRoute.get("/user-cart", auth, getUserCartController);
-authRoute.get("/get-orders", auth, getOrdersController);
+  router
+    .route("/admin-login")
+    .post(
+      validateResource(loginUserSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.LoginAdmin(req, res, next)
+    );
 
-authRoute.delete("/empty-cart", auth, emptyCartCtrl);
-authRoute.get("/getallorders", auth, isAdmin, getAllOrdersController);
-authRoute.post("/forgotpassword", forgotPassword);
-authRoute.patch("/resetpassword/:token", passwordReset);
+  router
+    .route("/cart/cash-order")
+    .post((req: Request, res: Response, next: NextFunction) =>
+      usercontroller.createOrderCtrl(req, res)
+    );
 
-authRoute.get("/wishlist/:id", auth, getWishList);
-authRoute.get("/getorderbyuser/:id", auth, isAdmin, getOrderByUserIDController);
-authRoute.get("/:id", getUser);
-authRoute.delete("/:id", deleteUser);
-authRoute.patch("/:id", auth, isAdmin, updateuserCtrl);
-authRoute.patch("/block-user/:id", auth, isAdmin, blockUserCtrl);
-authRoute.patch("/unblock-user/:id", auth, isAdmin, UnBlockUserCtrl);
-authRoute.put(
-  "/order/update-order/:id",
-  auth,
-  isAdmin,
-  UpdateOrderStatusController
-);
+  router
+    .route("/cart")
+    .post(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.userCartCtrl(req, res)
+    );
 
-export default authRoute;
+  router
+    .route("/cart/applycoupon")
+    .post(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.applyCouponCtrl(req, res)
+    );
+
+  router
+    .route("/save-address")
+    .put(
+      validateResource(createAddressSchema),
+      auth,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.saveAddress(req, res)
+    );
+
+  router
+    .route("/wishlist")
+    .put(
+      validateResource(prodWishlistSchema),
+      auth,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.addToWishList(req, res)
+    );
+
+  router
+    .route("/allusers")
+    .get(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getAllUser(req, res, next)
+    );
+  router
+    .route("/refresh-token")
+    .get((req: Request, res: Response, next: NextFunction) =>
+      usercontroller.handleRefreshToken(req, res, next)
+    );
+  router
+    .route("/logout")
+    .get((req: Request, res: Response, next: NextFunction) =>
+      usercontroller.logoutUserCtrl(req, res, next)
+    );
+  router
+    .route("/user-cart")
+    .get(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getUserCartController(req, res)
+    );
+  router
+    .route("/get-orders")
+    .get(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getOrdersController(req, res)
+    );
+
+  router
+    .route("/empty-cart")
+    .delete(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.emptyCartCtrl(req, res)
+    );
+  router
+    .route("/getallorders")
+    .get(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getAllOrdersController(req, res, next)
+    );
+
+  router
+    .route("/forgetpassword")
+    .post(
+      validateResource(fgtPswdSchema),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.forgotPassword(req, res, next)
+    );
+  router
+    .route("/resetpassword/:token")
+    .patch(
+      validateResource(resetPwdInput),
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.passwordReset(req, res, next)
+    );
+
+  router
+    .route("/wishlist/:id")
+    .get(auth, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getWishList(req, res)
+    );
+
+  router
+    .route("/getorderbyuser/:id")
+    .get(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getOrderByUserIDController(req, res)
+    );
+
+  router
+    .route("/:id")
+    .get((req: Request, res: Response, next: NextFunction) =>
+      usercontroller.getUser(req, res, next)
+    );
+
+  router
+    .route("/:id")
+    .delete((req: Request, res: Response, next: NextFunction) =>
+      usercontroller.deleteUser(req, res, next)
+    );
+
+  router
+    .route("/:id")
+    .patch(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.updateuserCtrl(req, res, next)
+    );
+
+  router
+    .route("/block-user/:id")
+    .patch(
+      validateResource(restrictUserSchema),
+      auth,
+      isAdmin,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.blockUserCtrl(req, res, next)
+    );
+
+  router
+    .route("/unblock-user/:id")
+    .patch(
+      validateResource(restrictUserSchema),
+      auth,
+      isAdmin,
+      (req: Request, res: Response, next: NextFunction) =>
+        usercontroller.UnBlockUserCtrl(req, res, next)
+    );
+
+  router
+    .route("/order/update-order/:id")
+    .put(auth, isAdmin, (req: Request, res: Response, next: NextFunction) =>
+      usercontroller.UpdateOrderStatusController(req, res)
+    );
+
+  return router;
+}

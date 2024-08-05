@@ -19,14 +19,14 @@ import {
   GetAllProductsOptions,
   GetAllProductsQueryParams,
 } from "@/interfaces/product_Interface";
-import { runRedisOperation } from "@/configs/redis.config";
+import {  redisClient } from "@/configs/redis.config";
 import { AuthenticatedRequest } from "@/interfaces/authenticateRequest";
 import { validateMongoDbID } from "@/utils/validateDbId";
 
 dotenv.config();
 
 
-const redis = runRedisOperation();
+// const redis = initRedisClient();
 // create a new product controller
 export const create_product = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
@@ -61,17 +61,21 @@ export const get_all_products = asyncHandler(
     const key = JSON.stringify(filterOpt);
 
     // Check if the value is already cached
-    const redisClient = await runRedisOperation();
-    const cachedValue = await redisClient.get(key);
+    const _redisClient =  redisClient;
+    if (!_redisClient) {
+      throw new Error("Redis client not initialized");
+    }
+
+    const cachedValue = await _redisClient.get(key);
     if (cachedValue) {
       const parsedValue = JSON.parse(cachedValue);
       res.status(StatusCodes.OK).json(parsedValue);
       return Promise.resolve(parsedValue);
     }
+
     const paginatedProducts = await getAllProductsService(filterOpt);
     const value = JSON.stringify(paginatedProducts);
-    const client = await runRedisOperation();
-    client.setEx(key, 3600, value);
+    await _redisClient.setEx(key, 3600, value);
     res.status(StatusCodes.OK).json(paginatedProducts);
   }
 );
